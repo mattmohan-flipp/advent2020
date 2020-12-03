@@ -8,6 +8,8 @@ import (
 
 	"mattmohan.com/advent2020/day1"
 	"mattmohan.com/advent2020/day2"
+	"mattmohan.com/advent2020/day3"
+	"mattmohan.com/advent2020/day4"
 )
 
 // DailyTask defines each puzzle task
@@ -47,11 +49,15 @@ func GetFunc(taskname string) DailyTask {
 		"day1b": day1.Day1b,
 		"day2a": day2.Day2a,
 		"day2b": day2.Day2b,
+		"day3a": day3.Day3a,
+		"day3b": day3.Day3b,
+		"day4a": day4.Day4a,
+		"day4b": day4.Day4b,
 	}
 
 	task, found := functions[taskname]
 	if !found {
-		println("Invalid day/variant provided")
+		println("Invalid day/variant provided", taskname)
 		os.Exit(1)
 	}
 
