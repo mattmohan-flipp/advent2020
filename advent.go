@@ -4,7 +4,6 @@ import (
 	"flag"
 	"io/ioutil"
 	"os"
-	"strconv"
 	"strings"
 
 	"mattmohan.com/advent2020/day1"
@@ -15,6 +14,34 @@ import (
 type DailyTask func([]string) string
 
 func main() {
+	day := flag.String("day", "3a", "Which day+variant to run (e.g. 1a)")
+	file := flag.String("file", "-", "The input file (- for stdin)")
+	flag.Parse()
+
+	taskname := "day" + *day
+	task := GetFunc(taskname)
+
+	inputFile := GetFile(*file)
+	splitInput := ReadFileToStringArray(inputFile)
+
+	result := task(splitInput)
+
+	println("Got: ", result)
+}
+
+// ReadFileToStringArray takes a file handle and returns a slice containing each line as a string
+func ReadFileToStringArray(inputFile *os.File) []string {
+	inputBytes, err := ioutil.ReadAll(inputFile)
+	if err != nil {
+		println("Error reading data: ", err.Error())
+		os.Exit(1)
+	}
+	input := string(inputBytes)
+	return strings.Split(input, "\n")
+}
+
+// GetFunc takes a task name and returns the task function
+func GetFunc(taskname string) DailyTask {
 	functions := map[string]DailyTask{
 		"day1a": day1.Day1a,
 		"day1b": day1.Day1b,
@@ -22,36 +49,25 @@ func main() {
 		"day2b": day2.Day2b,
 	}
 
-	day := flag.Int("day", 1, "Which day to run")
-	variant := flag.String("variant", "a", "Which variant to run (a/b)")
-	file := flag.String("file", "-", "The input file")
-
-	flag.Parse()
-
-	taskname := "day" + strconv.Itoa(*day) + *variant
 	task, found := functions[taskname]
 	if !found {
 		println("Invalid day/variant provided")
 		os.Exit(1)
 	}
 
-	inputFile := os.Stdin
-	if *file != "-" {
-		openFile, err := os.Open(*file)
+	return task
+}
+
+// GetFile takes the file param and returns an open file handle
+func GetFile(file string) *os.File {
+	if file != "-" {
+		openFile, err := os.Open(file)
 		if err != nil {
 			println("Error opening file: ", err.Error())
 			os.Exit(1)
 		}
-		inputFile = openFile
+		return openFile
+	} else {
+		return os.Stdin
 	}
-
-	inputBytes, err := ioutil.ReadAll(inputFile)
-	if err != nil {
-		println("Error reading data: ", err.Error())
-		os.Exit(1)
-	}
-	input := string(inputBytes)
-	splitInput := strings.Split(input, "\n")
-	result := task(splitInput)
-	println("Got: ", result)
 }
