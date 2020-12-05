@@ -47,7 +47,6 @@ func Day3b(a []string) string {
 			for x, y := 0, 0; y < height; x, y = ((x + xStep) % width), (y + yStep) {
 				if a[y][x] == '#' {
 					curTotal++
-				} else {
 				}
 			}
 			c <- curTotal
