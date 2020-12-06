@@ -10,6 +10,7 @@ import (
 	"mattmohan.com/advent2020/day2"
 	"mattmohan.com/advent2020/day3"
 	"mattmohan.com/advent2020/day4"
+	"mattmohan.com/advent2020/day5"
 )
 
 // DailyTask defines each puzzle task
@@ -53,6 +54,8 @@ func GetFunc(taskname string) DailyTask {
 		"day3b": day3.Day3b,
 		"day4a": day4.Day4a,
 		"day4b": day4.Day4b,
+		"day5a": day5.Day5a,
+		"day5b": day5.Day5b,
 	}
 
 	task, found := functions[taskname]
