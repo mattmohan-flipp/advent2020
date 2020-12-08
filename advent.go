@@ -12,6 +12,7 @@ import (
 	"mattmohan.com/advent2020/day4"
 	"mattmohan.com/advent2020/day5"
 	"mattmohan.com/advent2020/day6"
+	"mattmohan.com/advent2020/day7"
 )
 
 // DailyTask defines each puzzle task
@@ -59,6 +60,8 @@ func GetFunc(taskname string) DailyTask {
 		"day5b": day5.Day5b,
 		"day6a": day6.Day6a,
 		"day6b": day6.Day6b,
+		"day7a": day7.Day7a,
+		"day7b": day7.Day7b,
 	}
 
 	task, found := functions[taskname]
@@ -79,7 +82,6 @@ func GetFile(file string) *os.File {
 			os.Exit(1)
 		}
 		return openFile
-	} else {
-		return os.Stdin
 	}
+	return os.Stdin
 }
