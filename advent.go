@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"mattmohan.com/advent2020/day1"
+	"mattmohan.com/advent2020/day10"
 	"mattmohan.com/advent2020/day2"
 	"mattmohan.com/advent2020/day3"
 	"mattmohan.com/advent2020/day4"
@@ -14,6 +15,7 @@ import (
 	"mattmohan.com/advent2020/day6"
 	"mattmohan.com/advent2020/day7"
 	"mattmohan.com/advent2020/day8"
+	"mattmohan.com/advent2020/day9"
 )
 
 // DailyTask defines each puzzle task
@@ -49,22 +51,26 @@ func ReadFileToStringArray(inputFile *os.File) []string {
 // GetFunc takes a task name and returns the task function
 func GetFunc(taskname string) DailyTask {
 	functions := map[string]DailyTask{
-		"day1a": day1.Day1a,
-		"day1b": day1.Day1b,
-		"day2a": day2.Day2a,
-		"day2b": day2.Day2b,
-		"day3a": day3.Day3a,
-		"day3b": day3.Day3b,
-		"day4a": day4.Day4a,
-		"day4b": day4.Day4b,
-		"day5a": day5.Day5a,
-		"day5b": day5.Day5b,
-		"day6a": day6.Day6a,
-		"day6b": day6.Day6b,
-		"day7a": day7.Day7a,
-		"day7b": day7.Day7b,
-		"day8a": day8.Day8a,
-		"day8b": day8.Day8b,
+		"day1a":  day1.Day1a,
+		"day1b":  day1.Day1b,
+		"day2a":  day2.Day2a,
+		"day2b":  day2.Day2b,
+		"day3a":  day3.Day3a,
+		"day3b":  day3.Day3b,
+		"day4a":  day4.Day4a,
+		"day4b":  day4.Day4b,
+		"day5a":  day5.Day5a,
+		"day5b":  day5.Day5b,
+		"day6a":  day6.Day6a,
+		"day6b":  day6.Day6b,
+		"day7a":  day7.Day7a,
+		"day7b":  day7.Day7b,
+		"day8a":  day8.Day8a,
+		"day8b":  day8.Day8b,
+		"day9a":  day9.Day9a,
+		"day9b":  day9.Day9b,
+		"day10a": day10.Day10a,
+		"day10b": day10.Day10b,
 	}
 
 	task, found := functions[taskname]
