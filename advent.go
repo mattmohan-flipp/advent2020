@@ -9,6 +9,8 @@ import (
 	"mattmohan.com/advent2020/day1"
 	"mattmohan.com/advent2020/day10"
 	"mattmohan.com/advent2020/day11"
+	"mattmohan.com/advent2020/day12"
+	"mattmohan.com/advent2020/day13"
 	"mattmohan.com/advent2020/day2"
 	"mattmohan.com/advent2020/day3"
 	"mattmohan.com/advent2020/day4"
@@ -74,6 +76,10 @@ func GetFunc(taskname string) DailyTask {
 		"day10b": day10.Day10b,
 		"day11a": day11.Day11a,
 		"day11b": day11.Day11b,
+		"day12a": day12.Day12a,
+		"day12b": day12.Day12b,
+		"day13a": day13.Day13a,
+		"day13b": day13.Day13b,
 	}
 
 	task, found := functions[taskname]

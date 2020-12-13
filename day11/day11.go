@@ -2,6 +2,8 @@ package day11
 
 import (
 	"strconv"
+
+	"mattmohan.com/advent2020/intutils"
 )
 
 const (
@@ -45,19 +47,6 @@ func convertInputToGrid(a []string) Grid {
 	return b
 }
 
-func min(a int, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-func max(a int, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
 // Ray holds the slope of a direction
 type Ray struct {
 	x int
@@ -67,7 +56,7 @@ type Ray struct {
 func (ray Ray) calcNextRayPosition(row int, col int) (int, int) {
 	return row + ray.y, col + ray.x
 }
-func checkInbound(i int, j int, inp [][]int) bool {
+func checkInbounds(i int, j int, inp [][]int) bool {
 	maxI := len(inp)
 	if i < 0 || i >= maxI {
 		return false
@@ -92,7 +81,7 @@ func calcFar(inp Grid, row int, col int) int {
 	}
 
 	for _, ray := range rays {
-		for i, j := ray.calcNextRayPosition(row, col); checkInbound(i, j, inp); i, j = ray.calcNextRayPosition(i, j) {
+		for i, j := ray.calcNextRayPosition(row, col); checkInbounds(i, j, inp); i, j = ray.calcNextRayPosition(i, j) {
 
 			if inp[i][j] == full {
 				nearby++
@@ -108,12 +97,12 @@ func calcFar(inp Grid, row int, col int) int {
 
 func calcNearby(inp Grid, row int, col int) int {
 	nearby := 0
-	startRow := max(row-1, 0)
-	endRow := min(row+1, len(inp)-1)
+	startRow := intutils.Max(row-1, 0)
+	endRow := intutils.Min(row+1, len(inp)-1)
 
 	for i := startRow; i <= endRow; i++ {
-		startCol := max(col-1, 0)
-		endCol := min(col+1, len(inp[i])-1)
+		startCol := intutils.Max(col-1, 0)
+		endCol := intutils.Min(col+1, len(inp[i])-1)
 
 		for j := startCol; j <= endCol; j++ {
 			if i == row && j == col {
