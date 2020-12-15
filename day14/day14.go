@@ -19,7 +19,6 @@ func sumMem(mem map[int]string) int64 {
 	total = 0
 	for _, i := range mem {
 		val, _ := strconv.ParseInt(i, 2, 64)
-		println(val)
 		total += val
 	}
 	return total
